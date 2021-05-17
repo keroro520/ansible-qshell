@@ -1,2 +1,12 @@
 ---
-# tasks file for ansible-qshell
+- name: Download qshell
+  get_url:
+    force: true
+    url: https://devtools.qiniu.com/qshell-v2.5.1-linux-386.tar.gz
+    dest: /tmp/qshell.tar.gz
+- name: Unarchive qshell
+  become: true
+  unarchive:
+    remote_src: true
+    src: /tmp/qshell.tar.gz
+    dest: /usr/local/bin
